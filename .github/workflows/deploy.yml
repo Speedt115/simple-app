@@ -44,8 +44,8 @@ jobs:
     - name: Deploy App to ECS Service
       uses: ./.github/actions/ecs-deploy
       with:
-        app_repo_url: 196437631690.dkr.ecr.us-east-1.amazonaws.com
-        app_version: latest
+        app_repo_url: 196437631690.dkr.ecr.us-east-1.amazonaws.com/simple-app
+        app_version: ${{ github.sha }}
         ecs_cluster: 'production1'
         ecs_service: 'web-app'
         ecs_container_name: 'web'
