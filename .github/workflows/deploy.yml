@@ -34,7 +34,13 @@ jobs:
       with:
         repository: robertomoutinho/gh-action-ecs-deploy
        #token: ${{ github.token }}
-        path: ./.github/actions/ecs-deploy    
+        path: ./.github/actions/ecs-deploy  
+    
+    - name: Login to Amazon ECR
+        run:|
+          aws ecr get-login-password --region us-east-1 \
+            | docker login --username AWS --password-stdin 196437631690.dkr.ecr.us-east-1.amazonaws.com
+
     - name: Deploy App to ECS Service
       uses: ./.github/actions/ecs-deploy
       with:
