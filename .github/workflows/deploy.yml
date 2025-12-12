@@ -29,6 +29,12 @@ jobs:
         git add k8s/app.yaml
         git diff --staged --quiet || git commit -m "Update image to ${{ github.sha }}"
         git push
+    - name: Checkout AWS ECS Deploy GH Action
+      uses: actions/checkout@v2
+      with:
+        repository: robertomoutinho/gh-action-ecs-deploy
+       #token: ${{ github.token }}
+        path: ./.github/actions/ecs-deploy    
     - name: Deploy App to ECS Service
       uses: ./.github/actions/ecs-deploy
       with:
